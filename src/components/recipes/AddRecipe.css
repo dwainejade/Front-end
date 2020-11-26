@@ -1,41 +1,9 @@
-div .container{
-  background-image: url('https://i.ebayimg.com/images/g/DBAAAOSwPeRd-RUA/s-l640.jpg');
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  margin: 2% 10%;
+.add-recipe{
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
 }
 
-.container .addRecipeForm {
-  border: solid black 1px;
-  margin: 12%;
+.header{
   text-align: center;
-  width: 75%;
-  height: 75%;
-  padding: 10%;
-  background: white;
-  box-shadow: 7px 7px 3px grey;
-
 }
-
-.addRecipe h2 {
-  margin-bottom: 10%;
-  font-size: 3rem;
-  font-weight: bold;
-  
-}
-
-.addRecipe {
-  font-size: 1.25rem;
-}
-
-textarea {
-  overflow: auto;
-}
-
-
-
-
-

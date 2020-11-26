@@ -1,43 +1,24 @@
-.form2 {
-  display: block;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  height: 290px;
-  position: absolute;
-  top: 50%;
-  background-color: #0999e9;
-  padding: 35px;
+.login-form{
+  max-width: 350px;
   text-align: center;
-  box-shadow: 10px 10px 5px grey;
-  border-radius: 25px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: white;
+
+  box-shadow: 0 8px 6px -6px #262730;
+    padding:2rem;
+    border-radius: 8px;
+    color: #262730;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+        0 12.5px 10px rgba(0, 0, 0, 0.035),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+        0 100px 80px rgba(0, 0, 0, 0.07)
 }
 
-.form2 h1 {
-  margin-bottom: 15px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-}
-
-.form2 a {
-  color: black;
-  text-decoration: underline;
-}
-
-#email2,
-#password2 {
-  display: inline-block;
-  float: right;
-}
-
-.form2 #button2 {
-  margin: 15px 0;
-  color: black;
-  border-radius: 25px;
-}
-
-.form2 #button2:hover {
-  background-color: #f54c3c;
-  border: #f54c3c;
+.label-input{
+  text-align: justify;
+  margin-bottom: 16px;
 }

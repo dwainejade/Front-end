@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import formSchema from "./registrationSchema";
-import "./RegistrationForm.css";
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap'
 
 function RegistrationForm(props) {
   const initialForm = {
@@ -20,18 +21,12 @@ function RegistrationForm(props) {
 
   const submitForm = (event) => {
     event.preventDefault();
-    // const value =
-    //   event.target.type === "checkbox"
-    //     ? event.target.checked
-    //     : event.target.value;
-    // setFormValues({ ...formValues, [event.target.name] });
     console.log(formValues)
 
     axios
       .post('https://secret-family-recipes-6.herokuapp.com/auth/register', formValues)
       .then(res => {
         console.log(res)
-        // props.postLogin(formValues)
         history.push('/login')
       })
       .catch(err => {
@@ -43,22 +38,6 @@ function RegistrationForm(props) {
   function inputChange(event) {
     /* Destructuring the  name and value from the form inputs. */
     const { name, value } = event.target;
-    /* 'reach' grabs requirements for the form label equal to form event in formSchema (e.g. name, email, password). 
-        'validate' checks that the value/user input is valid-based on requirements in formSchema.
-        'then' is what happens when successful (in this case, nothing, since there is nothing in the ()). 
-        'catch' is what happens when the inputs are not valid per the formSchema (e.g. logs the message in the .required()). */
-    // if (name === "checkbox") {
-    //   yup
-    //     .reach(formSchema, name)
-    //     .validate(event.target.checked)
-    //     .then(() => { })
-    //     .catch((error) => { });
-
-    //   setFormValues({
-    //     ...formValues,
-    //     [name]: event.target.checked,
-    //   });
-    // } else {
     yup
       .reach(formSchema, name)
       .validate(value)
@@ -79,94 +58,72 @@ function RegistrationForm(props) {
   }, [formValues]);
 
   return (
-    <div>
-      <div>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap"
-          rel="stylesheet"
-        />
-      </div>
-      <form className="form" onSubmit={submitForm}>
-        <h1 className="head1">Register</h1>
-        <div className='input-wrapper'>
-          <div className="name">
-            <label>First Name:
-          <input
-                type="text"
-                name="first_name"
-                id="first_name"
-                value={formValues.first_name}
-                placeholder="John"
-                onChange={inputChange}
-              />
-            </label>
-
-            <label>Last Name:
-          <input
-                type="text"
-                name="last_name"
-                id="last_name"
-                value={formValues.last_name}
-                placeholder="Doe"
-                onChange={inputChange}
-              />
-            </label>
-
-            <label>Username:
-          <input
-                type="text"
-                name="username"
-                id="username"
-                value={formValues.username}
-                placeholder="bigjoe"
-                onChange={inputChange}
-              />
-            </label>
-          </div>
-
-          <div className="email">
-            <label>Email:
-          <input
-                type="email"
-                name="email"
-                id="email"
-                value={formValues.email}
-                placeholder="johndoe@email.com"
-                onChange={inputChange}
-              />
-            </label>
-          </div>
-
-          <div className="password">
-            <label>Password:
-          <input
-                type="password"
-                name="password"
-                id="password"
-                value={formValues.password}
-                placeholder="Runner124##"
-                onChange={inputChange}
-              />
-            </label>
-          </div>
-        </div>
-
-        {/* <div className="terms">
-          <a href="#">Terms of Service</a>
-          <input
-            id="check"
-            type="checkbox"
-            name="checkbox"
-            value={formValues.checkbox}
+    <div className='login-form'>
+      <Form onSubmit={submitForm}>
+        <h1 >Register</h1>
+        <div className='label-input'>
+          <Form.Label>First Name:</Form.Label>
+          <Form.Control className='label-input'
+            type="text"
+            name="first_name"
+            id="first_name"
+            value={formValues.first_name}
+            placeholder="John"
             onChange={inputChange}
-          /> */}
-        {/* </div> */}
-        <div className="submit">
-          <button type="submit" disabled={buttonDisabled}>
-            Submit
-          </button>
+          />
         </div>
-      </form>
+        <div className='label-input'>
+          <Form.Label>Last Name:</Form.Label>
+          <Form.Control className='label-input'
+            type="text"
+            name="last_name"
+            id="last_name"
+            value={formValues.last_name}
+            placeholder="Doe"
+            onChange={inputChange}
+          />
+        </div>
+        <div className='label-input'>
+          <Form.Label>Username:</Form.Label>
+          <Form.Control className='label-input'
+            type="text"
+            name="username"
+            id="username"
+            value={formValues.username}
+            placeholder="bigjoe"
+            onChange={inputChange}
+          />
+        </div>
+        <div className='label-input'>
+          <Form.Label>Email:</Form.Label>
+          <Form.Control className='label-input'
+            type="email"
+            name="email"
+            id="email"
+            value={formValues.email}
+            placeholder="johndoe@email.com"
+            onChange={inputChange}
+          />
+        </div>
+        <div className='label-input'>
+          <Form.Label>Password:</Form.Label>
+          <Form.Control className='label-input'
+            type="password"
+            name="password"
+            id="password"
+            value={formValues.password}
+            placeholder="Create Password"
+            onChange={inputChange}
+          />
+        </div>
+
+        <Button type="submit" disabled={buttonDisabled}>
+          Submit
+        </Button>
+
+        <p>Already a member? Login <Link to='/login'>here.</Link></p>
+
+      </Form>
     </div>
   );
 }

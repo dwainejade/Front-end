@@ -6,6 +6,7 @@ import RegistrationForm from './Registration/RegistrationForm';
 import RecipesList from "./components/recipes/RecipesList";
 import AddRecipe from './components/recipes/AddRecipe';
 import RecipePage from './components/recipes/RecipePage'
+import './App.css'
 
 // Context
 import RecipeProvider from './context/RecipeContext'

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './LoginForm.css';
 import schema from './loginSchema'
 import * as yup from 'yup'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
-import jwt from 'jwt-decode'
-
+import { Form, Button } from 'react-bootstrap'
+import './LoginForm.css'
 
 
 const initialFormValues = {
@@ -101,28 +100,21 @@ const LoginForm = () => {
   }, [formValues]);
 
   return (
-    <div>
-      <form className='form2' onSubmit={onSubmit}>
-        <h1>Login</h1>
-
-        <div>
-          <div>{formErrors.username}</div>
-          <div>{formErrors.password}</div>
-        </div>
-
-        <div className="email2">
-          <label>Username:     </label>
-          <input
+    <div className='login-form'>
+      <h1>Login</h1>
+      <Form onSubmit={onSubmit}>
+        <div className='label-input'>
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
             value={formValues.username}
             onChange={onChange}
             name='username'
             type='username'
           />
         </div>
-
-        <div className="password2">
-          <label>Password:     </label>
-          <input
+        <div className='label-input'>
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
             value={formValues.password}
             onChange={onChange}
             autoComplete='true'
@@ -130,15 +122,13 @@ const LoginForm = () => {
             name='password'
             type='password'
           />
-        </div>
 
-        <button disabled={disabled} id='button2'>Submit</button>
-
-        {/* new users click here, or something else, need to sign up? */}
-        <div className='loginLink'>
-          <Link to='/register'>Not a member? Register here.</Link>
         </div>
-      </form>
+        <Button type="submit" disabled={disabled} >Sign In</Button>
+
+        <p>Not a member? Register <Link to='/register'>here.</Link></p>
+
+      </Form>
     </div>
   );
 };
