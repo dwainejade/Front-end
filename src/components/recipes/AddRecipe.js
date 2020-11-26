@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import schema from './addRecipeSchema'
 import * as yup from 'yup'
 import axiosWithAuth from '../../utils/axiosWithAuth'
-import { Col, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap'
+import { Form, Button } from 'react-bootstrap'
 import './AddRecipe.css'
 
 const initialFormValues = {
@@ -22,6 +22,7 @@ const initialFormErrors = {
   category: '',
   recipe_img: ''
 }
+
 const initialRecipes = []
 const initialDisabled = true
 
@@ -118,132 +119,87 @@ const AddRecipe = () => {
       })
   }, [formValues])
 
-
-
   return (
-    <div className='container'>
-    <div className='addRecipeForm'>
-      <Form onSubmit={onSubmit} className='addRecipe'>
-        
-        <h2 className='addRecipe'>Add Recipe</h2>
+    <Form onSubmit={onSubmit} className='add-recipe'>
+      <div className='label-input'>
+        <h2 className='header'>Add Recipe</h2>
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          value={formValues.title}
+          onChange={onChange}
+          name='title'
+          type='text'
+        />
+      </div>
 
+      <div className='label-input'>
+        <Form.Label>Category</Form.Label>
+        <Form.Control
+          as="select"
+          onChange={onDropdownChange}
+          value={category}
+          name='category'
+          required
+        >
+          <option disabled>- Select an option -</option>
+          <option value='appetizer'>appetizer</option>
+          <option value='entree'>entree</option>
+          <option value='sides'>sides</option>
+          <option value='dessert'>dessert</option>
+          <option value='snack'>snack</option>
+          <option value='beverage'>beverage</option>
+        </Form.Control>
+      </div>
 
-        <div className='addRecipeItems'>
-        
-          {/* title */}
-          
-          <FormGroup row>
-          
-          <Label>Title</Label>
-          <Col sm={10}>
-          <Input
-              value={formValues.title}
-              onChange={onChange}
-              name='title'
-              type='text'
-            />
-          </Col>
-          </FormGroup>
-          
-          {/* source */}
-          
-          <FormGroup row>
-          <Label>Source </Label>
-          <Col sm={10}>
-          <Input
-              value={formValues.source}
-              onChange={onChange}
-              name='source'
-              type='text'
-            />
-          </Col>    
-         
-          </FormGroup>
-          
-          
+      <div className='label-input'>
+        <Form.Label>Source </Form.Label>
+        <Form.Control
+          value={formValues.source}
+          onChange={onChange}
+          name='source'
+          type='text'
+        />
+      </div>
+      <div className='label-input'>
+        <Form.Label>Ingredients</Form.Label>
+        <Form.Control as="textarea" rows={3}
+          placeholder=" List ingredients here"
+          value={formValues.ingredients}
+          onChange={onChange}
+          name='ingredients'
+          type='text'
+        />
+      </div>
 
-          {/* ingredients */}
-          
-          
-          <FormGroup row>
-          <Label>Ingredients</Label>
-          <Col md={6}>
-          <textarea
-              placeholder=" List ingredients here"
-              rows="4"
-              col="50"
-              value={formValues.ingredients}
-              onChange={onChange}
-              name='ingredients'
-              type='text'
-              />
-          </Col>
-          </FormGroup>
-          
-          {/* instructions */}
-          
-          <FormGroup row>
-          <Label>Instructions</Label>
-          <Col md={6}>
-          <textarea
-              placeholder=" Add instructions here"
-              rows="6"
-              col="50"
-              value={formValues.instructions}
-              onChange={onChange}
-              name='instructions'
-              type='text'
-              />
-          </Col>
-          </FormGroup>
-          
-        
-          {/* category */}
-          
-          
-          <FormGroup row>
-          
-          <Label>Category</Label>
-          <Col md={6}>
-            <select
-              onChange={onDropdownChange}
-              value={category}
-              name='category'
-              required
-            >
-              <option value=''>- Select an option -</option>
-              <option value='appetizer'>appetizer</option>
-              <option value='entree'>entree</option>
-              <option value='sides'>sides</option>
-              <option value='dessert'>dessert</option>
-              <option value='snack'>snack</option>
-              <option value='beverage'>beverage</option>
-            </select>
-            </Col>
-          </FormGroup>
-          
-          
-          <FormGroup row>
-          
-          <Label htmlFor="">Recipe img</Label>
-          <Col sm={10}>
-            <Input 
-              value={formValues.recipe_img}
-              onChange={onChange}
-              name='recipe_img'
-              type="text"
-            />
-          </Col>
-          </FormGroup>
-          
-          <Button color='danger' disabled={disabled} id='submitBtn'>Submit</Button>
+      <div className='label-input'>
+        <Form.Label>Instructions</Form.Label>
+        <Form.Control as="textarea" rows={3}
+          placeholder=" Add instructions here"
+          value={formValues.instructions}
+          onChange={onChange}
+          name='instructions'
+          type='text'
+        />
+      </div>
 
-        </div>
-      </Form>
+      <div className='label-input'>
+        <Form.Label htmlFor="">Recipe img</Form.Label>
+        <Form.Control
+          value={formValues.recipe_img}
+          onChange={onChange}
+          name='recipe_img'
+          type="text"
+        />
+      </div>
+      {/* <Form>
+        <Form.Group>
+          <Form.File id="exampleFormControlFile1" label="Example file input" />
+        </Form.Group>
+      </Form> */}
 
+      <Button color='danger' disabled={disabled} type='submit'>Submit</Button>
 
-    </div>
-    </div>
+    </Form>
 
   )
 }

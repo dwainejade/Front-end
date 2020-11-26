@@ -1,5 +1,5 @@
 .login-form{
-  width: 350px;
+  max-width: 350px;
   text-align: center;
   margin: auto;
   margin-top: 50px;
