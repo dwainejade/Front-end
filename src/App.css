@@ -2,3 +2,7 @@
   background-color: #fff;
   height: 100vh;
 }
+
+.active{
+  color: white;
+}

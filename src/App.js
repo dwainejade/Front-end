@@ -21,7 +21,7 @@ function App() {
         <Switch>
           <PrivateRoute exact path='/recipes' component={RecipesList} />
           <Route exact path='/' component={LoginForm} />
-          <Route exact path='/login' component={LoginForm} />
+          <Route activeClassName="active" exact path='/login' component={LoginForm} />
           <Route exact path='/register' component={RegistrationForm} />
           <Route exact path='/addrecipe' component={AddRecipe} />
           {/* conditional routing? */}

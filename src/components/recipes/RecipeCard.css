@@ -25,3 +25,10 @@
   max-height: 100%;
   transform: scale(1.05);
 }
+
+@media only screen and (max-width: 550px) {
+  .card-container {
+    width: 20rem;
+    margin: 1rem;
+  }
+}
